@@ -47,7 +47,10 @@
 	}
 
 	listen("update_state", ({ payload }: { payload: { context: string; contents: ActionInstance | null } }) => {
-		if (payload.context == slot?.context) slot = payload.contents;
+		if (payload.context == slot?.context) {
+			slot = payload.contents;
+			inslot = slot;
+		}
 	});
 
 	listen("key_moved", ({ payload }: { payload: { context: Context; pressed: boolean } }) => {
